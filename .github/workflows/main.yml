@@ -3,7 +3,7 @@ name: MarketResearchAI Daily Scanner
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 3 * * 1-5'
+    - cron: '0 3 * * 1-5'
 
 permissions:
   contents: read
