@@ -1,9 +1,9 @@
-name: Daily Market Research AI
+name: MarketResearchAI Daily Scanner
 
 on:
-  schedule:
-    - cron: '0 3 * * 1-5'
   workflow_dispatch:
+  schedule:
+    - cron: '30 3 * * 1-5'
 
 permissions:
   contents: read
@@ -22,73 +22,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install packages
-        run: |
-          pip install yfinance pandas numpy openpyxl requests
+        run: pip install yfinance pandas numpy openpyxl requests
 
       - name: Run scanner
-        run: |
-          python multi_stock_scanner.py
-          name: Daily Market Research AI
+        run: python multi_stock_scanner.py
 
-on:
-  schedule:
-    - cron: '0 3 * * 1-5'
-  workflow_dispatch:
-
-permissions:
-  contents: read
-
-jobs:
-  scanner:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install packages
-        run: |
-          pip install yfinance pandas numpy openpyxl requests
-
-      - name: Run scanner
-        run: |
-          python multi_stock_scanner.py
-          name: Daily Market Research AI
-
-on:
-  schedule:
-    - cron: '0 3 * * 1-5'
-  workflow_dispatch:
-
-permissions:
-  contents: read
-
-jobs:
-  scanner:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install packages
-        run: |
-          pip install yfinance pandas numpy openpyxl requests
-
-      - name: Run scanner
-        run: |
-          python multi_stock_scanner.py
-          - name: Upload Excel and CSV Reports
+      - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
           name: MarketResearchAI-Reports
@@ -96,4 +35,3 @@ jobs:
             *.xlsx
             *.csv
           if-no-files-found: warn
-          
