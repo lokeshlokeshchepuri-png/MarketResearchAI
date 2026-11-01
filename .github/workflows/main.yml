@@ -28,10 +28,10 @@ jobs:
         run: python multi_stock_scanner.py
 
       - name: Upload reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: MarketResearchAI-Reports
-          path: |
-            *.xlsx
-            *.csv
-          if-no-files-found: warn
+  uses: actions/upload-artifact@v4
+  with:
+    name: MarketResearchAI-Reports
+    path: |
+      *.csv
+      *.xlsx
+    if-no-files-found: warn
